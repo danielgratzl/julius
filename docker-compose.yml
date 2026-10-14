@@ -1,0 +1,17 @@
+services:
+  julius:
+    build: .
+    image: julius:latest
+    container_name: julius
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: Europe/Zurich
+      # Set to "true" once to explore the app with an example household (only fills an empty database)
+      SEED_DEMO: "false"
+    volumes:
+      - julius-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  julius-data:
