@@ -1,7 +1,8 @@
 services:
   julius:
+    # Published by GitHub Actions. `docker compose pull` fetches it; `--build` builds locally instead.
+    image: ghcr.io/danielgratzl/julius:latest
     build: .
-    image: julius:latest
     container_name: julius
     ports:
       - "3000:3000"

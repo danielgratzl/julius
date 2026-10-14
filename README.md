@@ -15,6 +15,14 @@ A small self-hosted app to track a family's net worth and recurring costs. Every
 
 ## Run with Docker
 
+Use the published image (built by GitHub Actions for amd64 and arm64):
+
+```sh
+docker compose pull && docker compose up -d
+```
+
+Or build it locally from source:
+
 ```sh
 docker compose up -d --build
 ```
@@ -38,6 +46,13 @@ The API works for automated backups too:
 ```sh
 curl -o julius-$(date +%F).json http://localhost:3000/api/backup
 ```
+
+## CI
+
+`.github/workflows/ci.yml` typechecks and tests every push and pull request, then builds the Docker image for `linux/amd64` and `linux/arm64`. It publishes the image to `ghcr.io/danielgratzl/julius` (not for pull requests):
+
+- each push to `main` publishes `latest` and `sha-<commit>`
+- a tag like `v1.2.0` publishes `1.2.0`, `1.2` and `1`
 
 ## Development
 
